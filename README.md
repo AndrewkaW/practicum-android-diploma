@@ -143,3 +143,6 @@
 <img src="https://github.com/AndrewkaW/practicum-android-diploma/assets/116573128/e8bacb65-ccb4-4f01-836f-44dcc4cef4cb" width="300"/>
 
 На экране отображается статический список людей, участвовавших в разработке приложения. 
+
+## Основной стек
+kotlin, sharedpreferences, recyclerview, mvvm, intent, fragment, glide, retrofit2, bottomnavigationview, constraint-layout, androidsdk, livedata, koin, room-database, singleactivity, jetpack-navigation-component, corutine-flow.
