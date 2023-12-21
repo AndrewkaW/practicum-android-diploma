@@ -13,5 +13,8 @@
         android:layout_height="@dimen/heightPoints_60dp"
         android:paddingHorizontal="@dimen/margin_16dp"
         app:drawableEndCompat="@drawable/ic_arrow_forward_24px"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:ellipsize="end"
         tools:text="@string/russia" />
 </LinearLayout>

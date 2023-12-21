@@ -7,5 +7,4 @@ import ru.practicum.android.diploma.search.domain.use_cases.GetSearchFilterUseCa
 class GetSearchFilterUseCaseImp(private val repository: FilterShPrefRepository) : GetSearchFilterUseCase {
     override fun execute(): Filter =
         repository.getFilter()
-
 }

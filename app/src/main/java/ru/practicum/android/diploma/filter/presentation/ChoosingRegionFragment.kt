@@ -163,6 +163,7 @@ class ChoosingRegionFragment : Fragment() {
                 inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
                 view.clearFocus()
             }
+            vM.getRegionList()
         } else {
             binding.tilSearch.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
             binding.tilSearch.endIconDrawable = requireContext().getDrawable(R.drawable.cross)

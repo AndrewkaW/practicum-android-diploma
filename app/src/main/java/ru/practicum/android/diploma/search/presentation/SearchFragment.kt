@@ -5,24 +5,21 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.practicum.android.diploma.R
 import ru.practicum.android.diploma.databinding.FragmentSearchBinding
 import ru.practicum.android.diploma.search.presentation.models.SearchStates
-import ru.practicum.android.diploma.util.ResourceProvider
 import ru.practicum.android.diploma.util.TextUtils
 
 class SearchFragment : Fragment() {
@@ -53,36 +50,25 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         jobClickCb = initClickCb()
+        viewModel.startFilterCheck()
         val recyclerView = binding.rvSearch
         adapter = JobAdapter(jobClickCb)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
         viewModel.getState().observe(viewLifecycleOwner) { state ->
             when (state) {
-                is SearchStates.Start -> setDefaultScreen(state.filterStates)
-                is SearchStates.ServerError -> setErrorScreen(
-                    state.filterStates,
-                    state.pagesLoaded
-                )
-
-                is SearchStates.ConnectionError -> setConnectionLostScreen(
-                    state.filterStates,
-                    state.pagesLoaded
-                )
-
-                is SearchStates.InvalidRequest ->
-                    setInvalidRequestScreen(
-                        state.filterStates,
-                        state.pagesLoaded
-                    )
-
+                is SearchStates.Start -> setDefaultScreen()
+                is SearchStates.ServerError -> setErrorScreen()
+                is SearchStates.ConnectionError -> setConnectionLostScreen()
+                is SearchStates.InvalidRequest -> setInvalidRequestScreen()
                 is SearchStates.Success -> {
-                    setSuccessScreen(state.found, state.filterStates)
+                    setSuccessScreen(state.found)
                     adapter.jobsList = state.jobList.toMutableList()
                 }
 
-                is SearchStates.Loading -> setLoadingPaggScreen(state.isPageRefresher)
-                else -> setLoadingPaggScreen(false)
+                is SearchStates.Loading -> setLoadingPaggScreen()
+                is SearchStates.FilterChanged -> changeFilterTint(state.filterNotBase)
+                else -> Unit
             }
         }
 
@@ -104,96 +90,78 @@ class SearchFragment : Fragment() {
         _binding = null
     }
 
-    private fun setDefaultScreen(hasFilter: Boolean) {
-        binding.rvSearch.visibility = GONE
-        binding.ivError.setImageResource(R.drawable.search_start)
-        binding.tvError.visibility = GONE
-        binding.tvRvHeader.visibility = GONE
-        binding.pagingPrBar.visibility = GONE
-        changeFilterTint(hasFilter)
-    }
-
-    private fun setErrorScreen(hasFilter: Boolean, pagesLoaded: Boolean) {
-        if (pagesLoaded) {
-            initSnack(requireContext().getString(R.string.server_error))
-            binding.pagingPrBar.visibility = GONE
-        } else {
-            binding.rvSearch.visibility = GONE
-            binding.ivError.visibility = VISIBLE
-            binding.ivError.setImageResource(R.drawable.error_server_2)
-            binding.tvError.visibility = VISIBLE
-            binding.tvError.setText(R.string.server_error)
-            binding.tvRvHeader.visibility = GONE
-            binding.pagingPrBar.visibility = GONE
-            changeFilterTint(hasFilter)
+    private fun setDefaultScreen() {
+        with(binding) {
+            rvSearch.visibility = GONE
+            ivError.setImageResource(R.drawable.search_start)
+            tvError.visibility = GONE
+            tvRvHeader.visibility = GONE
+            pagingPrBar.visibility = GONE
+            ivError.visibility = VISIBLE
         }
     }
 
-    private fun setConnectionLostScreen(hasFilter: Boolean, pagesLoaded: Boolean) {
-        if (pagesLoaded) {
-            initSnack(requireContext().getString(R.string.internet_connection_issue))
-            binding.pagingPrBar.visibility = GONE
-        } else {
-            binding.rvSearch.visibility = GONE
-            binding.ivError.visibility = VISIBLE
-            binding.ivError.setImageResource(R.drawable.disconnect)
-            binding.tvError.visibility = VISIBLE
-            binding.tvError.setText(R.string.internet_connection_issue)
-            binding.tvRvHeader.visibility = GONE
-            binding.pagingPrBar.visibility = GONE
-            changeFilterTint(hasFilter)
+    private fun setErrorScreen() {
+        with(binding) {
+            rvSearch.visibility = GONE
+            ivError.visibility = VISIBLE
+            ivError.setImageResource(R.drawable.error_server_2)
+            tvError.visibility = VISIBLE
+            tvError.setText(R.string.server_error)
+            tvRvHeader.visibility = GONE
+            pagingPrBar.visibility = GONE
         }
     }
 
-    private fun setSuccessScreen(amount: Int, hasFilter: Boolean) {
-        binding.rvSearch.visibility = VISIBLE
-        binding.ivError.visibility = GONE
-        binding.tvError.visibility = GONE
-        binding.tvRvHeader.visibility = VISIBLE
-        binding.tvRvHeader.text = getString(R.string.founded, TextUtils.addSeparator(amount))
-        binding.pagingPrBar.visibility = GONE
-        changeFilterTint(hasFilter)
-    }
-
-    private fun setInvalidRequestScreen(hasFilter: Boolean, pagesLoaded: Boolean) {
-        if (pagesLoaded) {
-            initSnack(requireContext().getString(R.string.error_list_favorite))
-            binding.pagingPrBar.visibility = GONE
-        } else {
-            binding.rvSearch.visibility = GONE
-            binding.ivError.visibility = VISIBLE
-            binding.ivError.setImageResource(R.drawable.error_list_favorite)
-            binding.tvError.visibility = VISIBLE
-            binding.tvError.setText(R.string.error_list_favorite)
-            binding.tvRvHeader.visibility = VISIBLE
-            binding.tvRvHeader.setText(R.string.vacancy_mismatch)
-            binding.pagingPrBar.visibility = GONE
-            changeFilterTint(hasFilter)
+    private fun setConnectionLostScreen() {
+        with(binding) {
+            rvSearch.visibility = GONE
+            ivError.visibility = VISIBLE
+            ivError.setImageResource(R.drawable.disconnect)
+            tvError.visibility = VISIBLE
+            tvError.setText(R.string.internet_connection_issue)
+            tvRvHeader.visibility = GONE
+            pagingPrBar.visibility = GONE
         }
     }
 
-    private fun setLoadingPaggScreen(pageRefresher: Boolean) {
-        binding.rvSearch.isGone = !pageRefresher
-        binding.ivError.visibility = GONE
-        binding.tvError.visibility = GONE
-        binding.pagingPrBar.visibility = VISIBLE
+    private fun setSuccessScreen(amount: Int) {
+        with(binding) {
+            rvSearch.visibility = VISIBLE
+            ivError.visibility = GONE
+            tvError.visibility = GONE
+            tvRvHeader.visibility = VISIBLE
+            tvRvHeader.text = getString(R.string.founded, TextUtils.addSeparator(amount))
+            pagingPrBar.visibility = GONE
+        }
     }
 
-    private fun initSnack(snackText: String) {
-        val createdSnack =
-            Snackbar.make(binding.etSearch, snackText, Snackbar.LENGTH_SHORT)
-        createdSnack
-            .setTextMaxLines(1)
-            .show()
+    private fun setInvalidRequestScreen() {
+        with(binding) {
+            rvSearch.visibility = GONE
+            ivError.visibility = VISIBLE
+            ivError.setImageResource(R.drawable.error_list_favorite)
+            tvError.visibility = VISIBLE
+            tvError.setText(R.string.error_list_favorite)
+            tvRvHeader.visibility = VISIBLE
+            tvRvHeader.setText(R.string.vacancy_mismatch)
+            pagingPrBar.visibility = GONE
+        }
+    }
+
+    private fun setLoadingPaggScreen() {
+        with(binding) {
+            ivError.visibility = GONE
+            tvError.visibility = GONE
+            pagingPrBar.visibility = VISIBLE
+        }
     }
 
     private fun changeFilterTint(hasFilter: Boolean) {
         if (hasFilter)
-            binding.ivFilter.imageTintList =
-                ContextCompat.getColorStateList(requireContext(), R.color.filter_tint)
+            binding.ivFilter.setImageResource(R.drawable.filter_blue)
         else
-            binding.ivFilter.imageTintList =
-                ContextCompat.getColorStateList(requireContext(), R.color.filter_tint_base)
+            binding.ivFilter.setImageResource(R.drawable.filter)
     }
 
     private fun tWCreator() = object : TextWatcher {

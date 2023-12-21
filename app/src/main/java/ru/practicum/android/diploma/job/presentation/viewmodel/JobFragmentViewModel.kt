@@ -83,8 +83,8 @@ class JobFragmentViewModel(
     fun addToFavorite(job: JobForScreen) {
         viewModelScope.launch {
             jobFavoriteInteractor.add(job)
-            _state.postValue(JobScreenState.FavouriteIcon((true)))
             isFavourite = true
+            _state.postValue(JobScreenState.FavouriteIcon((isFavourite)))
         }
     }
 
@@ -98,8 +98,8 @@ class JobFragmentViewModel(
     fun deleteFromFavorite(id: String) {
         viewModelScope.launch {
             jobFavoriteInteractor.delete(id)
-            _state.postValue(JobScreenState.FavouriteIcon((false)))
             isFavourite = false
+            _state.postValue(JobScreenState.FavouriteIcon((isFavourite)))
         }
     }
 

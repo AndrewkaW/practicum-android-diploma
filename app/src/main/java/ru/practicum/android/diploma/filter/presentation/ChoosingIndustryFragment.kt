@@ -174,6 +174,7 @@ class ChoosingIndustryFragment : Fragment() {
                 inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
                 view.clearFocus()
             }
+            vM.getIndustries()
         } else {
             binding.tilSearch.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
             binding.tilSearch.endIconDrawable = requireContext().getDrawable(R.drawable.cross)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/heightPoints_60dp"
     android:orientation="horizontal">
@@ -12,14 +13,17 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/heightPoints_60dp"
         android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
         android:paddingHorizontal="@dimen/margin_16dp"
-        android:text="@string/show_with_salary" />
+        tools:text="qcfdFFHDFSKJDFGHFDJGHDJFKGJSHDGKJSDHGKSDHGSGHSKJHSHDGKSHGGJSGKJSHG" />
 
     <com.google.android.material.radiobutton.MaterialRadioButton
         android:id="@+id/cb_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:button="@drawable/custom_checkbox"
-        android:gravity="center"
+        android:layout_gravity="center"
         app:buttonTint="@color/blue" />
 </LinearLayout>
