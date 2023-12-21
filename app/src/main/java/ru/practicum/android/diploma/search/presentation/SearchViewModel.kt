@@ -80,7 +80,6 @@ class SearchViewModel(
             refreshSearch()
             return
         }
-
     }
 
     fun getNewPage() {

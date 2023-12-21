@@ -9,16 +9,12 @@ import ru.practicum.android.diploma.favorite.data.db.entity.KeySkillsEntity
 @Dao
 interface KeySkillsDAO {
 
-    // Удаление навыков
     @Query("DELETE FROM KeySkills WHERE idVacancy LIKE :idVacancy")
     suspend fun delete(idVacancy: String)
 
-    // Получить навыки по id
     @Query("SELECT * FROM KeySkills WHERE idVacancy LIKE :idVacancy")
     suspend fun getSkills(idVacancy: String): List<KeySkillsEntity>
 
-    // Добавить навыки
     @Insert(entity = KeySkillsEntity::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(keySkillsEntity: KeySkillsEntity)
-
 }

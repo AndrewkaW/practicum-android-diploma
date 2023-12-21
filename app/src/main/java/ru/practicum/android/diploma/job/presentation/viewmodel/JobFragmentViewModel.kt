@@ -50,9 +50,9 @@ class JobFragmentViewModel(
         viewModelScope.launch {
 
             val job = jobFavoriteInteractor.getFromBase(id)
-            if (job == null){
+            if (job == null) {
                 _state.postValue(JobScreenState.ServerError)
-            }else{
+            } else {
                 _state.postValue(JobScreenState.JobFromDb(job))
             }
 

@@ -69,7 +69,6 @@ class ChoosingRegionFragment : Fragment() {
             }
             false
         }
-
     }
 
     override fun onDestroyView() {
@@ -168,7 +167,5 @@ class ChoosingRegionFragment : Fragment() {
             binding.tilSearch.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
             binding.tilSearch.endIconDrawable = requireContext().getDrawable(R.drawable.cross)
         }
-
     }
-
 }

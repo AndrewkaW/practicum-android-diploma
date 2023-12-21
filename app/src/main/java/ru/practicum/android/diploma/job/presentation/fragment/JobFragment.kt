@@ -202,7 +202,6 @@ class JobFragment : Fragment(), PhonesViewHolder.PhoneClickListener {
             }
         }
 
-
         job.phones?.let {
             if (job.phones.isNotEmpty()) {
                 with(binding) {

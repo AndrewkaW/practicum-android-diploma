@@ -20,7 +20,5 @@ class LoadJobsUseCaseImp(private val repository: JobNetworkRepository) : LoadJob
 
                 is DtoConsumer.NoInternet -> AdapterDomain.codeMapper(Codes.NO_NET_CONNECTION)
             }
-
         }
-
 }

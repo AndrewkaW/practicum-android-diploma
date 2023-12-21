@@ -4,7 +4,7 @@ import ru.practicum.android.diploma.search.domain.models.Vacancy
 
 sealed interface SearchStates {
     data object Start : SearchStates
-    data class  FilterChanged(var filterNotBase: Boolean) : SearchStates
+    data class FilterChanged(var filterNotBase: Boolean) : SearchStates
     data object Loading : SearchStates
     data object ServerError : SearchStates
     data object ConnectionError : SearchStates

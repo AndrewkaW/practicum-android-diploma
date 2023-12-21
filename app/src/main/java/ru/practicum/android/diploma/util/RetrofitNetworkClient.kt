@@ -29,7 +29,6 @@ class RetrofitNetworkClient(val context: Context) : NetworkClient {
         if (!isConnected()) return ResponseDto()
 
         return when (dto) {
-            //Поиск вакансий
             is JobSearchRequest -> try {
                 val resp = hhService.getJobList(
                     options = dto.queryMap
@@ -38,7 +37,7 @@ class RetrofitNetworkClient(val context: Context) : NetworkClient {
             } catch (e: Exception) {
                 ResponseDto().apply { responseCode = ResultCodes.ERROR }
             }
-            //Просмотр вакансии
+
             is JobDtoForScreenRequest -> try {
                 val resp = hhService.getJobById(
                     id = dto.id
@@ -47,7 +46,7 @@ class RetrofitNetworkClient(val context: Context) : NetworkClient {
             } catch (e: Exception) {
                 ResponseDto().apply { responseCode = ResultCodes.ERROR }
             }
-            //Список стран
+
             is FilterRequest.Countries -> try {
                 val data = hhService.getCountries()
                 val response = CountriesResponse(data)
@@ -55,7 +54,7 @@ class RetrofitNetworkClient(val context: Context) : NetworkClient {
             } catch (e: Exception) {
                 ResponseDto().apply { responseCode = ResultCodes.ERROR }
             }
-            //Список регеонов
+
             is FilterRequest.Areas -> try {
                 val data = hhService.getAllAreas()
                 val response = AllAreasResponse(data)
@@ -63,7 +62,7 @@ class RetrofitNetworkClient(val context: Context) : NetworkClient {
             } catch (e: Exception) {
                 ResponseDto().apply { responseCode = ResultCodes.ERROR }
             }
-            //Список регеонов по Id
+
             is FilterRequest.AreasById -> try {
                 val data = hhService.getAreasById(
                     id = dto.idArea
@@ -73,7 +72,7 @@ class RetrofitNetworkClient(val context: Context) : NetworkClient {
             } catch (e: Exception) {
                 ResponseDto().apply { responseCode = ResultCodes.ERROR }
             }
-            //Список Отрослей
+
             is FilterRequest.Industries -> try {
                 val data = hhService.getIndustries()
                 val response = IndustriesResponse(data)
@@ -115,4 +114,3 @@ class RetrofitNetworkClient(val context: Context) : NetworkClient {
         const val BASE_HH_API = "https://api.hh.ru/"
     }
 }
-

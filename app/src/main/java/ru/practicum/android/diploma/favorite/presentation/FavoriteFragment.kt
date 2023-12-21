@@ -44,7 +44,6 @@ class FavoriteFragment : Fragment() {
         viewModel.getFavoriteLiveData().observe(viewLifecycleOwner) { pairDataFavorite ->
             when (pairDataFavorite.first) {
                 FavoriteState.DATA -> {
-                    // есть избранные
                     binding.rvSearch.isGone = false
                     binding.tvMessage.isGone = true
                     binding.ivPlaceholderPng.isGone = true
@@ -53,7 +52,6 @@ class FavoriteFragment : Fragment() {
                 }
 
                 FavoriteState.EMPTY -> {
-                    // Пустой список
                     binding.ivPlaceholderPng.setImageResource(R.drawable.empty_list_favorite)
                     binding.tvMessage.text = getText(R.string.empty_list)
                     binding.rvSearch.isGone = true
@@ -62,7 +60,6 @@ class FavoriteFragment : Fragment() {
                 }
 
                 else -> {
-                    // Ошибка
                     binding.ivPlaceholderPng.setImageResource(R.drawable.error_list_favorite)
                     binding.tvMessage.text = getText(R.string.error_list_favorite)
                     binding.rvSearch.isGone = true

@@ -49,6 +49,7 @@ class SimilarJobViewModel(
             Codes.ERROR -> {
                 similar.value = SimilarState.ServerError
             }
+
             Codes.SUCCESS -> {
                 vacancyList.addAll(jobsInfo.jobs!!)
                 maxPage = jobsInfo.pages
@@ -56,13 +57,14 @@ class SimilarJobViewModel(
                     jobList = vacancyList
                 )
             }
+
             Codes.NO_NET_CONNECTION -> {
                 similar.value = SimilarState.ConnectionError
             }
+
             Codes.NO_RESULTS -> {
                 similar.value = SimilarState.InvalidRequest
             }
         }
     }
-
 }

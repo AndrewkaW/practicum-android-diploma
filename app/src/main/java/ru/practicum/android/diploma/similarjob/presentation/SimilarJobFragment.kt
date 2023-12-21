@@ -21,13 +21,6 @@ import ru.practicum.android.diploma.search.presentation.JobAdapter
 import ru.practicum.android.diploma.similarjob.presentation.models.SimilarState
 
 class SimilarJobFragment : Fragment() {
-    companion object {
-        private const val IDJOB = "id_job"
-
-        fun createArgs(id: String?): Bundle {
-            return bundleOf(IDJOB to id)
-        }
-    }
 
     private lateinit var binding: FragmentSimilarJobBinding
     private lateinit var jobClickCb: (String) -> Unit
@@ -65,7 +58,6 @@ class SimilarJobFragment : Fragment() {
                     binding.tvMessage.isGone = true
                     binding.ivPlaceholderPng.isGone = true
                     binding.pagingPrBar.isGone = true
-                    // Заполнение списка вакансии
                     adapter.jobsList = it.jobList
                 }
 
@@ -122,6 +114,14 @@ class SimilarJobFragment : Fragment() {
             if (pos >= itemsCount - 1) {
                 viewModel.getNewPage()
             }
+        }
+    }
+
+    companion object {
+        private const val IDJOB = "id_job"
+
+        fun createArgs(id: String?): Bundle {
+            return bundleOf(IDJOB to id)
         }
     }
 }

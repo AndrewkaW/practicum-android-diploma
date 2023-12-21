@@ -31,8 +31,8 @@ class PlacesOfWorkFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBinding()
-        vM.country.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
+        vM.country.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding.clCountry.visibility = View.GONE
                 binding.tvCountryClear.visibility = View.VISIBLE
             } else {
@@ -43,8 +43,8 @@ class PlacesOfWorkFragment : Fragment() {
             buttonAcceptVisibility()
         }
 
-        vM.region.observe(viewLifecycleOwner){
-            if(it.isNullOrEmpty()){
+        vM.region.observe(viewLifecycleOwner) {
+            if (it.isNullOrEmpty()) {
                 binding.clRegion.visibility = View.GONE
                 binding.tvRegionClear.visibility = View.VISIBLE
             } else {
@@ -103,5 +103,4 @@ class PlacesOfWorkFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-
 }

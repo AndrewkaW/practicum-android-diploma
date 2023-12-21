@@ -15,11 +15,9 @@ class DiffCallbackJob(private val oldList: List<Vacancy>, private val newList: L
         return old.id == new.id
     }
 
-
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val old = oldList[oldItemPosition]
         val new = newList[newItemPosition]
         return old == new
     }
-
 }

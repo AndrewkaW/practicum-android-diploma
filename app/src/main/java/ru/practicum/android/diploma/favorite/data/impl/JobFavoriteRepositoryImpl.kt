@@ -14,11 +14,9 @@ class JobFavoriteRepositoryImpl(
 ) : JobFavoriteRepository {
     override suspend fun add(job: JobForScreen) {
         appDataBase.favoriteDAO().add(mapper.map(job))
-        // сохранить навыки
         job.keySkills.forEach {
             appDataBase.keySkillsDAO().add(mapper.mapSkills(it!!, job.id!!))
         }
-        // сохранить контакты
         job.phones?.forEach {
             appDataBase.phonesDAO().add(mapper.mapPhones(it!!, job.id!!))
         }
@@ -40,12 +38,12 @@ class JobFavoriteRepositoryImpl(
 
     override suspend fun getFromBase(id: String): JobForScreen? {
 
-        var favoriteEntity:FavoriteEntity
+        var favoriteEntity: FavoriteEntity
         val favoriteEntityResponse = appDataBase.favoriteDAO().getVacancy(id)
 
-        if (favoriteEntityResponse.isEmpty()){
+        if (favoriteEntityResponse.isEmpty()) {
             return null
-        }else{
+        } else {
             favoriteEntity = favoriteEntityResponse[0]
         }
 

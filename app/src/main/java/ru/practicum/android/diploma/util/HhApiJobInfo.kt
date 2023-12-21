@@ -14,7 +14,6 @@ import ru.practicum.android.diploma.search.data.models.JobSearchResponseDto
 import ru.practicum.android.diploma.similarjob.data.dto.JobSearchSimilarResponseDto
 
 interface HhApiJobInfo {
-    //Поиск вакансий
     @Headers(
         HEADER_AUTH,
         USER
@@ -24,7 +23,6 @@ interface HhApiJobInfo {
         @QueryMap options: HashMap<String, String>
     ): JobSearchResponseDto
 
-    //Просмотр вакансии
     @Headers(
         HEADER_AUTH,
         USER
@@ -32,22 +30,18 @@ interface HhApiJobInfo {
     @GET("vacancies/{vacancy_id}")
     suspend fun getJobById(@Path("vacancy_id") id: String): JobDtoForScreenResponse
 
-    //Получение списка стран
     @Headers(USER)
     @GET("areas/countries")
     suspend fun getCountries(): List<CountryDto>
 
-    //Получение регионов
     @Headers(USER)
     @GET("areas")
     suspend fun getAllAreas(): List<AreaDto>
 
-    //Получение регионов по айди страны
     @Headers(USER)
     @GET("areas/{area_id}")
     suspend fun getAreasById(@Path("area_id") id: String): AreaDto
 
-    //Получение отрослей по айди страны
     @Headers(USER)
     @GET("salary_statistics/dictionaries/salary_industries")
     suspend fun getIndustries(): List<IndustryDto>

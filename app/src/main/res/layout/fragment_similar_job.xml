@@ -90,5 +90,4 @@
         app:layout_constraintTop_toBottomOf="@id/rvSearch"
         tools:visibility="visible" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

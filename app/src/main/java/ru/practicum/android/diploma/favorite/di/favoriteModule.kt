@@ -47,5 +47,4 @@ val favoriteModule = module {
     single {
         JobMapper()
     }
-
 }

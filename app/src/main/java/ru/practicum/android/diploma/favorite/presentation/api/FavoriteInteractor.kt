@@ -5,5 +5,5 @@ import ru.practicum.android.diploma.favorite.domain.FavoriteState
 import ru.practicum.android.diploma.search.domain.models.Vacancy
 
 interface FavoriteInteractor {
-    fun get() : Flow<Pair<FavoriteState, ArrayList<Vacancy>>>
+    fun get(): Flow<Pair<FavoriteState, ArrayList<Vacancy>>>
 }
