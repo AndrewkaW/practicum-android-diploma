@@ -48,5 +48,4 @@ object RegionConvertor {
             countryId = region.countryId
         )
     }
-
 }

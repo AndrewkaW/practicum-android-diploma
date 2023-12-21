@@ -143,5 +143,4 @@ class FilterSettingsFragment : Fragment() {
             binding.btnReset.isVisible = true
         }
     }
-
 }

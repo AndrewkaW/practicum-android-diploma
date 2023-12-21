@@ -1,21 +1,17 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
+
     <style name="Base.Theme.PracticumAndroidDiploma" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+
         <item name="colorPrimary">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>
 
-        <!-- Цвет области ввода текста, без hint -->
         <item name="colorPrimaryContainer">@color/gray</item>
         <item name="colorOnPrimaryContainer">@color/black_universal</item>
 
-        <!-- Secondary brand color. -->
         <item name="colorOnSecondary">@color/white_universal</item>
 
-        <!-- Error color. -->
         <item name="colorError">@color/red</item>
 
-        <!-- Customize your theme here. -->
         <item name="blackWhiteColor">@color/white</item>
         <item name="android:textColorHint">?attr/colorOnSecondary</item>
 

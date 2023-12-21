@@ -65,5 +65,4 @@ class FilterInteractorImpl(private val filterRepository: FilterRepository) : Fil
     override fun getIndustriesByName(name: String): Flow<DtoConsumer<List<Industry>>> {
         return filterRepository.getIndustriesByName(name)
     }
-
 }

@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--TopBtns-->
             <LinearLayout
                 android:id="@+id/ll_top_buttons"
                 android:layout_width="match_parent"
@@ -57,7 +56,6 @@
                     android:src="@drawable/ic_favorites_off" />
             </LinearLayout>
 
-            <!--MainContent-->
             <LinearLayout
                 android:id="@+id/ll_main_content"
                 android:layout_width="match_parent"
@@ -66,7 +64,6 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <!--JobNameAndSalary-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,7 +87,6 @@
                         tools:text="[от 100 000 ₽]" />
                 </LinearLayout>
 
-                <!--EmployerCard-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_job"
                     android:layout_width="match_parent"
@@ -128,14 +124,12 @@
                         tools:text="[Москва]" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!--JobContent-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_24dp"
                     android:orientation="vertical">
 
-                    <!--RequiredExperience-->
                     <TextView
                         style="@style/job16TextMedium"
                         android:text="@string/required_experience" />
@@ -146,14 +140,12 @@
                         android:layout_marginTop="@dimen/margin_4dp"
                         tools:text="[От 1 года до 3 лет]" />
 
-                    <!--Schedule-->
                     <TextView
                         android:id="@+id/tv_employment"
                         style="@style/job16TextRegular"
                         android:layout_marginTop="@dimen/margin_8dp"
                         tools:text="[Полная занятость, Удаленная работа]" />
 
-                    <!--JobDescription-->
                     <TextView
                         style="@style/job22Text"
                         android:layout_marginTop="@dimen/margin_32dp"
@@ -166,7 +158,6 @@
                         tools:layout_marginStart="@dimen/margin_16dp"
                         tools:text="[• Sample Text\n• Sample Text\n• Sample Text\n• Sample Text\n• Sample Text]" />
 
-                    <!--KeySkills-->
                     <LinearLayout
                         android:id="@+id/ll_key_skills"
                         android:layout_width="match_parent"
@@ -188,7 +179,6 @@
                             tools:text="[• Sample Text\n• Sample Text\n• Sample Text\n• Sample Text\n• Sample Text]" />
                     </LinearLayout>
 
-                    <!--Contacts-->
                     <LinearLayout
                         android:id="@+id/ll_contacts"
                         android:layout_width="match_parent"
@@ -203,7 +193,6 @@
                             android:layout_marginBottom="@dimen/margin_16dp"
                             android:text="@string/contacts" />
 
-                        <!--EmployerContacts-->
                         <TextView
                             android:id="@+id/tv_contact_name_static"
                             style="@style/job16TextMedium"
@@ -220,7 +209,6 @@
                             tools:text="[Amogus]"
                             tools:visibility="visible" />
 
-                        <!--Email-->
                         <TextView
                             android:id="@+id/tv_email_static"
                             style="@style/job16TextMedium"
@@ -238,7 +226,6 @@
                             tools:text="[aboba@bread.com]"
                             tools:visibility="visible" />
 
-                        <!--PhoneNumbers-->
                         <TextView
                             android:id="@+id/tv_phone_static"
                             style="@style/job16TextMedium"
@@ -254,7 +241,6 @@
                             tools:itemCount="3"
                             tools:listitem="@layout/recycler_phone_item" />
 
-                        <!--Comment-->
                         <TextView
                             android:id="@+id/tv_comment_static"
                             style="@style/job16TextMedium"

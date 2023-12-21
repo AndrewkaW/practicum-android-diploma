@@ -171,7 +171,6 @@
 
     </FrameLayout>
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_choose"
         style="@style/ButtonAccept"

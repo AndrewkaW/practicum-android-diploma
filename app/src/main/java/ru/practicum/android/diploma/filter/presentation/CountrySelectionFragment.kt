@@ -52,7 +52,6 @@ class CountrySelectionFragment : Fragment() {
         binding.ibArrowBack.setOnClickListener {
             findNavController().popBackStack()
         }
-
     }
 
     override fun onDestroyView() {
@@ -116,5 +115,4 @@ class CountrySelectionFragment : Fragment() {
         vM.saveCountryInFilter(country)
         findNavController().popBackStack()
     }
-
 }

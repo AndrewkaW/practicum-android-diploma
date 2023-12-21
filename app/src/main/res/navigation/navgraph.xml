@@ -26,7 +26,7 @@
         android:id="@+id/favoriteFragment"
         android:name="ru.practicum.android.diploma.favorite.presentation.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
+        tools:layout="@layout/fragment_favorite">
         <argument
             android:name="jobId"
             app:argType="string" />
@@ -38,7 +38,7 @@
         android:id="@+id/jobFragment"
         android:name="ru.practicum.android.diploma.job.presentation.fragment.JobFragment"
         android:label="fragment_job"
-        tools:layout="@layout/fragment_job" >
+        tools:layout="@layout/fragment_job">
         <argument
             android:name="jobId"
             app:argType="string" />
@@ -50,7 +50,7 @@
         android:id="@+id/filterSettingsFragment"
         android:name="ru.practicum.android.diploma.filter.presentation.FilterSettingsFragment"
         android:label="fragment_filter_settings"
-        tools:layout="@layout/fragment_filter_settings" >
+        tools:layout="@layout/fragment_filter_settings">
         <action
             android:id="@+id/action_filterSettingsFragment_to_placesOfWorkFragment2"
             app:destination="@id/placesOfWorkFragment" />
@@ -77,7 +77,7 @@
         android:id="@+id/placesOfWorkFragment"
         android:name="ru.practicum.android.diploma.filter.presentation.PlacesOfWorkFragment"
         android:label="fragment_places_of_work"
-        tools:layout="@layout/fragment_places_of_work" >
+        tools:layout="@layout/fragment_places_of_work">
         <action
             android:id="@+id/action_placesOfWorkFragment_to_countrySelectionFragment"
             app:destination="@id/countrySelectionFragment" />
@@ -89,7 +89,7 @@
         android:id="@+id/similarJobFragment"
         android:name="ru.practicum.android.diploma.similarjob.presentation.SimilarJobFragment"
         android:label="fragment_similar_job"
-        tools:layout="@layout/fragment_similar_job" >
+        tools:layout="@layout/fragment_similar_job">
         <argument
             android:name="jobId"
             app:argType="string" />

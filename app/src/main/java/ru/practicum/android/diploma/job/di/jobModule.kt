@@ -28,7 +28,7 @@ val jobModule = module {
     }
 
     single<JobFavoriteRepository> {
-        JobFavoriteRepositoryImpl(get(),get())
+        JobFavoriteRepositoryImpl(get(), get())
     }
 
     single<JobFavoriteInteractor> {
@@ -56,7 +56,7 @@ val jobModule = module {
     }
 
     viewModel {
-        JobFragmentViewModel(get(), get(),get())
+        JobFragmentViewModel(get(), get(), get())
     }
 
 }

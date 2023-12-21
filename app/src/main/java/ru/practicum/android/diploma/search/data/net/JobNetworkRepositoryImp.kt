@@ -31,10 +31,9 @@ class JobNetworkRepositoryImp(
                             )
                     )
                 )
+
                 ResultCodes.NO_NET_CONNECTION -> emit(DtoConsumer.NoInternet(response.responseCode.code))
                 ResultCodes.ERROR -> emit(DtoConsumer.Error(response.responseCode.code))
             }
         }.flowOn(Dispatchers.IO)
-
-
 }

@@ -50,7 +50,6 @@ class AdapterJob(private val resourceProvider: ResourceProvider) {
         pages = response.pages
     )
 
-
     fun filterToJobReq(filter: Filter) = JobSearchRequest(
         makeHasMap(filter)
     )
@@ -78,4 +77,3 @@ class AdapterJob(private val resourceProvider: ResourceProvider) {
         return request
     }
 }
-

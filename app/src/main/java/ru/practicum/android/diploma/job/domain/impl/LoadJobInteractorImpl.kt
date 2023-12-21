@@ -18,12 +18,10 @@ class LoadJobInteractorImpl(private val repository: JobRepositoryImpl) : LoadJob
                     resultCode = Codes.SUCCESS, result.data
                 )
 
-
                 is DtoConsumer.Error -> createJobForScreenInfo(Codes.ERROR, null)
 
                 is DtoConsumer.NoInternet -> createJobForScreenInfo(Codes.NO_NET_CONNECTION, null)
             }
         }
     }
-
 }
